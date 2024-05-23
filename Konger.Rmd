@@ -1,0 +1,28 @@
+---
+title: "Kings"
+author: "Nicoline, Jacob, Rebecca"
+date: "2024-05-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+library(tidyr)
+library(tidyverse)
+kings2_clean <- read_csv2("data/kings2.csv") #csv 2 i stedet for csv, da computeren kun kan finde ud af at bruge den
+kings2_clean %>% 
+  mutate(duration=regent_slut-regent_start,
+         midyear=regent_slut-duration/2) %>% 
+  ggplot(aes(x=midyear, y=duration)) +
+  geom_point() +
+  geom_smooth() 
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
